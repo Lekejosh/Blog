@@ -710,3 +710,29 @@ article-title {
   margin-top: auto;
   margin-bottom: 0;
 }
+
+/* Media quaries */
+
+@media screen and (min-width: 700px) {
+  .trending-news-box {
+    flex-direction: row;
+    align-items: center;
+  }
+  .trnding-news-image-box {
+    width: 50%;
+  }
+  .trending-news-data {
+    margin: auto;
+    text-align: center;
+  }
+  .newsletter-description {
+    max-width: 40rem;
+  }
+  .popular-tags-container,
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .form-container-inner {
+    align-items: center;
+  }
+}
