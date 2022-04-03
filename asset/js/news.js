@@ -2,9 +2,9 @@
 
 const generalBtn = document.getElementById("general");
 const sportsBtn = document.getElementById("sports");
-const stocksBtn = document.getElementById("stocks");
-const cryptoBtn = document.getElementById("crypto");
-const weatherBtn = document.getElementById("weather");
+const businessBtn = document.getElementById("business");
+// const cryptoBtn = document.getElementById("crypto");
+const technologyBtn = document.getElementById("technology");
 
 const searchBtn = document.getElementById("search-icon");
 
@@ -25,12 +25,109 @@ const TECHNOLOGY_NEWS =
   "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=";
 const SEARCH_NEWS = "https://newsapi.org/v2/everything?q=";
 
-generalBtn.addEventListener("click", function () {});
+generalBtn.addEventListener("click", function () {
+  fetchGeneralNews();
+});
 
-sportsBtn.addEventListener("click", function () {});
+sportsBtn.addEventListener("click", function () {
+  fetchSportsNews();
+});
 
-stocksBtn.addEventListener("click", function () {});
+businessBtn.addEventListener("click", function () {
+  fetchBusinessNews();
+});
 
-cryptoBtn.addEventListener("click", function () {});
+technologyBtn.addEventListener("click", function () {
+  fetchTechnologyNews();
+});
 
-weatherBtn.addEventListener("click", function () {});
+searchBtn.addEventListener("click", function () {
+  fetchQueryNews();
+});
+
+const fetchGeneralNews = async () => {
+  const response = await fetch(GENERAL_NEWS + API_KEY);
+  newsDataArr = [];
+  if (response.status >= 200 && response.status < 300) {
+    const myJson = await response.json();
+    newsDataArr = myJson;
+  } else {
+    //Handle Errors
+  }
+
+  displayNews();
+};
+
+const fetchsportsNews = async () => {
+  const response = await fetch(SPORTS_NEWS + API_KEY);
+  newsDataArr = [];
+  if (response.status >= 200 && response.status < 300) {
+    const myJson = await response.json();
+    newsDataArr = myJson;
+  } else {
+    //Handle Errors
+  }
+
+  displayNews();
+};
+
+const fetchBusinessNews = async () => {
+  const response = await fetch(BUSINESS_NEWS + API_KEY);
+  newsDataArr = [];
+  if (response.status >= 200 && response.status < 300) {
+    const myJson = await response.json();
+    newsDataArr = myJson;
+  } else {
+    //Handle Errors
+  }
+
+  displayNews();
+};
+
+const fetchTechnologyNews = async () => {
+  const response = await fetch(TECHNOLOGY_NEWS + API_KEY);
+  newsDataArr = [];
+  if (response.status >= 200 && response.status < 300) {
+    const myJson = await response.json();
+    newsDataArr = myJson;
+  } else {
+    //Handle Errors
+  }
+
+  displayNews();
+};
+
+const fetchQueryNews = async () => {
+  if (newsQuery.value == null) return;
+
+  const response = await fetch(
+    SEARCH_NEWS + newsQuery.value + "&apiKey=" + API_KEY
+  );
+  newsDataArr = [];
+  if (response.status >= 200 && response.status < 300) {
+    const myJson = await response.json();
+    newsDataArr = myJson.articles;
+  } else {
+    //error Errors
+    console.log(response.status, response.statusText);
+  }
+
+  displayNews();
+};
+
+function displayNews() {
+  newsdetails.innerHTML = "";
+
+  if (newsDataArr.lenght == 0) {
+    newsdetails.innerHTML = "<h5> No Data Found.</h5>";
+    return;
+  }
+
+  newsDataArr.forEach((news) => {
+    var col = document.createElement("div");
+    col.className = "col";
+
+    var image = document.createElement("article-image");
+    image.setAttribute("height", "matchparnt");
+  });
+}
