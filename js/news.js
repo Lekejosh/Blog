@@ -125,7 +125,7 @@ function displayNews() {
 
   newsDataArr.forEach((news) => {
     var col = document.createElement("div");
-    col.className = "col";
+    col.className = "container";
 
     var image = document.createElement("article-image");
     image.setAttribute("height", "matchparnt");
